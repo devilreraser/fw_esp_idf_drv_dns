@@ -91,6 +91,12 @@ bool drv_dns_resolve(char* cName, char* cResolveIP, size_t nResolveIPSize, bool*
 
     bool bURLResolved;
 
+    if ( flag_dns_busy == NULL )  
+    {
+        flag_dns_busy = xSemaphoreCreateBinary();
+        xSemaphoreGive(flag_dns_busy);
+    }
+    
     xSemaphoreTake(flag_dns_busy, portMAX_DELAY);
     ESP_LOGI(TAG, "Get IP for URL: %s\n", cName );
     
@@ -145,8 +151,8 @@ bool drv_dns_resolve(char* cName, char* cResolveIP, size_t nResolveIPSize, bool*
     return bURLResolved;
 }
 
-void drv_dns_init(void)
-{
-    flag_dns_busy = xSemaphoreCreateBinary();
-    xSemaphoreGive(flag_dns_busy);
-}
+// void drv_dns_init(void)
+// {
+//     flag_dns_busy = xSemaphoreCreateBinary();
+//     xSemaphoreGive(flag_dns_busy);
+// }

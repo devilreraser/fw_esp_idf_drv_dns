@@ -49,7 +49,7 @@ extern "C"
  * Function Prototypes
  **************************************************************************** */
 bool drv_dns_resolve(char* cName, char* cResolveIP, size_t nResolveIPSize, bool* waitResolve);
-void drv_dns_init(void);
+// void drv_dns_init(void);
 
 
 #ifdef __cplusplus

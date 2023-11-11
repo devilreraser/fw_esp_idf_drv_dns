@@ -1,3 +1,7 @@
 menu "Component drv_dns Configuration"
 
+    config DRV_DNS_USE
+        bool "Use drv_dns component"
+        default y
+        
 endmenu
